@@ -1868,6 +1868,12 @@
         }
   
     </style>
+    <script>
+      let window_width =$(window).width()
+      let svg_transform =-1585/1920*window_width 
+      $('.logo_hidden_svg').attr('data-4000-bottom',`width:8160vw;height:8160vw;transform:translate(${svg_transform},0)`)
+
+    </script>
 </head>
 
 <body> 
@@ -2469,9 +2475,9 @@
     <script type="text/javascript" src="./js/pon/skrollr-master/skrollr-master/skrollr.min.js"></script>
     <script type="text/javascript" src="./js/pon/skrollr-colors-master/skroll-colors.min.js"></script>
     <script>
-      let window_width =$(window).width()
-      let svg_transform =-1585/1920*window_width 
-      $('.logo_hidden_svg').attr('data-4000-bottom',`width:8160vw;height:8160vw;transform:translate(${svg_transform},0)`)
+      // let window_width =$(window).width()
+      // let svg_transform =-1585/1920*window_width 
+      // $('.logo_hidden_svg').attr('data-4000-bottom',`width:8160vw;height:8160vw;transform:translate(${svg_transform},0)`)
 
 
       var skrollr_obj = skrollr.init();
