@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>neonoise</title>
+     
+    
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    
+     <!-- bootstrap icon for control_scaling_icon use -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- font-awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- google fonts Black Ops One & Chakra Petch & Noto Sans TC  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- css animate -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="js/jquery-3.6.3.min.js" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        :root {
+            --dark: #292560;
+            --light: #66fee6;
+            --pink: #f595f0;
+            --gray: #dfdfdf;
+            --white: #ffffff;
+            --black: #000000;
+        }
+    
+        /* navbar css 開始*/
+    
+        .navbar_all {
+            /* font-family: 'Noto Sans TC'; */
+            /* font-weight: 100; */
+            letter-spacing: 1px;
+        }
+    
+        .control_scaling_wrap {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+        }
+    
+        .control_scaling_icon {
+    
+            font-size: 24px;
+            color: rgb(255, 255, 255);
+            /* width: 24px !important;
+            height: 24px !important; */
+    
+        }
+    
+    
+        .logo {
+            height: 40px;
+            width: 40px;
+            background-color: white;
+    
+        }
+    
+        .logo-icon {
+            font-size: 24px;
+            color: rgb(0, 0, 0);
+            /* width: 24px !important;
+            height: 24px !important; */
+            width: 32px !important;
+            height: 32px !important;
+        }
+    
+        .navbar_all {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 999;
+            transition: all 0.5s ease;
+        }
+    
+        /* Eddie : 手機版隱藏按鈕 */
+        .navbar_all.hidden {
+            transform: translateX(calc(100% - 79px));
+        }
+    
+        .navbar-glass {
+            background-color: hsla(0, 0%, 100%, 0.064) !important;
+            backdrop-filter: blur(5px) !important;
+            /* border-top: 1px solid hsla(0,0%,100%,.1); */
+            border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+    
+        }
+    
+        .navbar_button {
+            font-size: 16px !important;
+            /* background-color: hsla(0, 0%, 100%, 0.064) !important;
+            backdrop-filter:blur(5px) !important;  */
+    
+        }
+    
+        .navbar_button_icon {
+            font-size: 16px !important;
+            width: 5.3333333% !important;
+    
+        }
+    
+        .border-line-left {
+            border-left: 1px solid hsla(0, 0%, 100%, .1);
+        }
+    
+    
+    
+        /* navbar 控制橫幅 開始 */
+    
+    
+        /* Eddie : 電腦版隱藏按鈕 */
+        @media screen and (min-width:768px) {
+    
+            .navbar_all {
+                margin-top: 10px;
+                height: 40px !important;
+                padding-left: 130px;
+                padding-right: 130px;
+    
+            }
+    
+            .navbar_all.hidden {
+                transform: translateX(calc(100% - 211px));
+                /* transform: calc() translateX(); */
+            }
+        }
+    
+        /* navbar 控制橫幅 結束 */
+    
+        /* 手機板 漢堡打開選單 開始 */
+        .hamburger {
+            width: 22px;
+            height: 23px;
+            position: relative;
+            cursor: pointer;
+            /* display: inline-block; */
+            z-index: 100;
+        }
+    
+        .hamburger span {
+            background: #fff;
+            display: block;
+            position: absolute;
+            height: 2.3px;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: all .25s cubic-bezier(0.22, 0.61, 0.36, 1);
+            -moz-transition: all .25s cubic-bezier(0.22, 0.61, 0.36, 1);
+            -o-transition: all .25s cubic-bezier(0.22, 0.61, 0.36, 1);
+            transition: all .25s cubic-bezier(0.22, 0.61, 0.36, 1);
+            opacity: 1;
+            width: 100%;
+            left: 0;
+        }
+    
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+    
+        .hamburger span:nth-child(2) {
+            top: 8px;
+        }
+    
+        .hamburger span:nth-child(3) {
+            top: 16px;
+        }
+    
+        .hamburger.open span:nth-child(1) {
+            top: 9px;
+            -webkit-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -o-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+    
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+    
+        .hamburger.open span:nth-child(3) {
+            top: 9px;
+            -webkit-transform: rotate(-135deg);
+            -moz-transform: rotate(-135deg);
+            -o-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+        }
+    
+        /* 點擊事件 */
+    
+        .menu-overlay {
+            position: fixed;
+            left: 0;
+            top: -200vw;
+            width: 100%;
+            height: 100vh;
+            background: #292560;
+            opacity: 0;
+            visibility: visible;
+            z-index: 111 !important;
+            text-align: center;
+            display: table;
+            -webkit-transition: visibility 0.5s ease, opacity 1s ease;
+            -moz-transition: visibility 0.5s ease, opacity 1s ease;
+            -o-transition: visibility 0.5s ease, opacity 1s ease;
+            transition: visibility 0.5s ease, opacity 1s ease;
+        }
+    
+        .menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+            top: 0px;
+        }
+    
+        .nav {
+            display: block;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    
+        .nav li {
+            margin: 20px 0;
+            -moz-transform: translateY(-40px);
+            -webkit-transform: translateY(-40px);
+            transform: translateY(-40px);
+            opacity: 0;
+            -webkit-transition: all 0.4s ease;
+            -moz-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+        }
+    
+        .open .nav li {
+            -moz-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+            opacity: 1;
+        }
+    
+        .open .nav li:nth-child(1) {
+            -webkit-transition-delay: 100ms;
+            transition-delay: 100ms;
+        }
+    
+        .open .nav li:nth-child(2) {
+            -webkit-transition-delay: 200ms;
+            transition-delay: 200ms;
+        }
+    
+        .open .nav li:nth-child(3) {
+            -webkit-transition-delay: 300ms;
+            transition-delay: 300ms;
+        }
+    
+        .open .nav li:nth-child(4) {
+            -webkit-transition-delay: 400ms;
+            transition-delay: 400ms;
+        }
+    
+        .open .nav li:nth-child(5) {
+            -webkit-transition-delay: 500ms;
+            transition-delay: 500ms;
+        }
+    
+        .open .nav li:nth-child(6) {
+            -webkit-transition-delay: 600ms;
+            transition-delay: 600ms;
+        }
+    
+        .open .nav li:nth-child(7) {
+            -webkit-transition-delay: 700ms;
+            transition-delay: 700ms;
+        }
+    
+        .open .nav li:nth-child(8) {
+            -webkit-transition-delay: 800ms;
+            transition-delay: 800ms;
+        }
+    
+        .nav a {
+            display: block;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+    
+        .nav a:hover {
+            opacity: 0.6;
+        }
+    
+        .menu-overlay {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-weight: 100;
+            letter-spacing: 2.5px;
+        }
+    
+    
+    
+    
+    
+        /* 服務項目彈跳其他分頁 開始*/
+    
+        .service_items_action ul {
+            width: 100% !important;
+            /* position: absolute;
+            top: 34px; */
+    
+        }
+    
+        .service_items_action02 ul {
+            width: 100% !important;
+            /* position: absolute;
+            top: 34px; */
+    
+        }
+    
+        /* 服務項目彈跳其他分頁 結束*/
+    
+        /* navbar 頭貼 桌機版 */
+        @media (min-width: 768px) {
+            .nav_head_imgwrap{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+            .nav_head_img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        
+    
+    
+        }
+    
+    
+            /* navbar css 結尾 */
+    
+    
+    
+    
+            /* -----------------------購物車視窗開始 --------------------------------*/
+            .cart_window {
+                position: fixed;
+                z-index: 1;
+                right: 130px;
+                top: 50px;
+                width: calc(600/1920*100vw);
+                min-width: 453px;
+                aspect-ratio: 10/12;
+                margin-left: auto;
+                overflow: hidden;
+                display: none;
+    
+            }
+    
+            .c_card {
+                width: 95%;
+                height: 100%;
+                background: url(imgs/pon/cart_window_card.svg) no-repeat;
+                background-size: contain;
+                transition: 0.5s;
+                overflow: hidden;
+                /* transform: translate3d(100%,0,0); */
+    
+            }
+    
+            .c_return {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 6%;
+                height: 98%;
+                background: url(imgs/pon/cart_window_return.svg) no-repeat;
+                background-size: cover;
+                /* transform: translate3d(0,-100%,0); */
+            }
+    
+            .f_small {
+                font-family: 'Chakra Petch';
+                font-style: normal;
+                font-weight: 400;
+                font-size: calc(12/1920*100vw);
+                line-height: 16px;
+                margin: 0;
+                color: #ffffff;
+            }
+    
+            .f-md-p {
+                font-family: 'Chakra Petch';
+                font-style: normal;
+                font-weight: 400;
+                font-size: calc(16/1920*100vw);
+                line-height: 16px;
+                margin: 0;
+                color: #ffffff;
+            }
+    
+    
+            .card_title {
+                color: var(--light);
+                border-bottom: var(--light)1px solid;
+            }
+    
+            .card_product_group {
+                height: 50%;
+                overflow-y: scroll;
+                position: relative;
+            }
+    
+            .card_product_group::-webkit-scrollbar {
+                width: 6px;
+            }
+    
+            /* Track */
+            .card_product_group::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+    
+            /* Handle */
+            .card_product_group::-webkit-scrollbar-thumb {
+                background: var(--pink);
+            }
+    
+            /* Handle on hover */
+            .card_product_group::-webkit-scrollbar-thumb:hover {
+                background: var(--pink);
+            }
+    
+            .p_card {
+                height: 50%;
+                border-bottom: var(--light) 1px solid;
+            }
+    
+            .card_img {
+                width: 100%;
+                aspect-ratio: 1/1;
+                background-color: #ffffff7d;
+                border-radius: 3px;
+            }
+    
+            .card_img img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+    
+            }
+    
+            .card_detail {
+                height: 25%;
+                background-color: var(--white);
+                font-weight: 700;
+            }
+    
+            .card_btn {
+                height: 6%;
+            }
+    
+            .cart_window .pay_btn {
+                width: 50%;
+                color: var(--light);
+            }
+    
+            /* a:visited {
+            color: var(--light);
+        } */
+    
+            .cart_window .back_btn {
+                width: 50%;
+            }
+    
+            .cart_window .back_btn::before {
+                position: absolute;
+                content: '繼續逛逛';
+                width: 100%;
+                height: 100%;
+                top: 75%;
+                transform: translateY(-50%);
+                color: var(--light);
+                z-index: 10;
+            }
+    
+            .cart_window .back_btn:hover .back_btn_svg {
+                fill: rgba(102, 254, 230, 0.7);
+                filter: drop-shadow(0px 0px 10px #66FEE6);
+            }
+    
+            .cart_window .back_btn:hover::before {
+                font-weight: 800;
+                color: var(--dark);
+            }
+    
+            .cart_window.back_btn_svg {
+                transition: 0.5s;
+            }
+    
+            .cart_window .pay_btn::before {
+                position: absolute;
+                content: '立即結帳';
+                height: 100%;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: var(--dark);
+                z-index: 10;
+            }
+    
+            .cart_window .pay_btn:hover .pay_btn_svg {
+                filter: drop-shadow(0px 0px 10px #66FEE6);
+            }
+    
+            .cart_window .pay_btn:hover::before {
+                font-weight: 800;
+            }
+    
+            .pay_btn_svg {
+                transition: 0.5s;
+            }
+    
+    
+    
+            @media screen and (max-width: 768px) {
+                .cart_window {
+                    width: 100%;
+                    right: 0;
+                    min-width: 375px;
+                    height: 82vh;
+                }
+    
+                .p_card {
+                    height: unset;
+                }
+    
+                .c_card {
+                    height: 100%;
+                    width: 95%;
+                    background-size: cover;
+                }
+    
+                .cart_window .back_btn,
+                .cart_window .pay_btn {
+                    background-size: 100% 100%;
+                }
+            }
+    
+            /* ----------------------------購物車style結束------------------------------------------------ */
+    </style>
+    <style>
+        /* -------footer--------- */
+        footer{
+          background-color: rgba(41, 37, 96, 1);
+        }
+  
+       
+       .ft-bg-logotext{
+              font-family: 'Chakra Petch', sans-serif;
+              font-size: 3rem !important;
+              letter-spacing: 12px;
+              margin-top: 7.5rem !important;
+              margin-bottom: 7.5rem !important;
+            
+  
+          }
+  
+          .ft-button{
+              border-top: 1px solid hsla(0,0%,100%,.2);
+              padding-top: 2rem !important;
+              padding-bottom: 7rem !important;
+             
+  
+          }
+  
+          .ft-text{
+              font-family: 'Chakra Petch', sans-serif;
+              font-size: 14px;
+              padding-bottom: 3rem !important;
+              color: #808080;
+  
+          }
+        /* ---------------------------------------------------------- */
+        #skrollr-body {
+            float: left;
+            width: 100%;
+            height: 100%;
+          }
+        body{
+          /* height: auto !important; */
+        }
+        :root {
+          --dark: #292560;
+          --light: #66fee6;
+          --pink: #f595f0;
+          --gray: #dfdfdf;
+          --white: #ffffff;
+          --black: #000000;
+          --color1: rgb(0, 231, 255);
+          --color2: rgb(255, 0, 231);
+          --eevee1: #efb2fb;
+          --eevee2: #acc6f8;
+        }
+  
+        * {
+          /* outline: 1px solid red; */
+          font-family: "Chakra Petch", sans-serif, "Black Ops One";
+        }
+        section {
+          background-color: var(--dark);
+        }
+        .row {
+          padding: 0;
+          margin: 0;
+        }
+        .full-container {
+          max-width: 1920px;
+          margin: auto;
+        }
+        h5{
+          font-family: 'Chakra Petch',sans-serif;
+          font-style: normal;
+          font-weight: 700;
+          font-size:clamp(12px ,1.5vw , 30px) ;
+          /* font-size: 30px; */
+          line-height: 39px;
+        }
+        p{
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-family: 'Chakra Petch',sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size:clamp(12px ,1vw , 30px) ;
+          
+          line-height: 25px;
+        }
+        .f_small{
+          font-family: 'Chakra Petch',sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 16px;
+        }
+        .f-md-p{
+          font-family: 'Chakra Petch',sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          /* font-size: calc(19/1920*100vw); */
+          font-size: 19px;
+          line-height: 25px;
+          color: var(--white);
+          margin: 0;
+        }
+  
+        /*----------------自訂class name-----------------------------------  */
+        .left-50 {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .my_shadow{
+          box-shadow: 0px 0px 4px #66FEE6;
+        }
+       
+        /* -------------------------hero section--------------------------------------------- */
+        .view_box {
+          padding: 0;
+          overflow: hidden;
+          height: 200vh;
+        }
+        .view_box video {
+          width: 100%;
+          height: 200vh;
+          object-fit: cover;
+          mix-blend-mode: difference;
+        }
+       
+        
+        .vk_marquee{
+          margin-top: 100px;
+          overflow: hidden;
+          height: calc(362 / 1920 * 100vw);
+          width: 100%;
+        }
+  
+        .vk_horizontalline {
+          height:calc(362 / 1920 * 100vw);
+          width: 100%;
+          animation: line-move 15s linear infinite 0s;
+          display: flex;
+          overflow: hidden;
+          font-size: calc(362 / 1920 * 100vw);
+          mix-blend-mode: difference;
+          color: rgb(255, 255, 255);
+          font-family: "Black Ops One",sans-serif;
+          user-select:none;
+        }
+        .vk_horizontalline2 {
+            height:calc(362 / 1920 * 100vw);
+            width: 100%;
+            animation: line-move2 15s linear infinite 0s;
+            display: flex;
+            overflow: hidden;
+            font-size: calc(362 / 1920 * 100vw);
+            mix-blend-mode: difference;
+            color: rgb(255, 255, 255);
+            font-family: "Black Ops One",sans-serif;
+            user-select:none;
+        }
+  
+        /* ---------------------------------百葉窗效果---------------------------------------- */
+  
+        .blinds {
+            transform: translateY(-25%);
+       
+        }
+        .blinds h1 {
+          display: flex;
+          line-height: calc(300 / 1920 * 100vw);
+          font-size: calc(300 / 1920 * 100vw);
+          color: rgb(255, 255, 255);
+          font-family: "Black Ops One",sans-serif;
+         
+        }
+        .life {
+          justify-content: flex-end;
+        }
+        .lines{
+          width: 100%;
+          height: 100%;
+          top: 0;
+        }
+        .line{
+          background-color: var(--dark);
+        }
+        .lines> div:nth-of-type(1) {
+          height: 4%;
+        }
+        .lines> div:nth-of-type(2) {
+          height: 5%;
+        }
+        .lines> div:nth-of-type(3) {
+          height:7%;
+        }
+        .lines> div:nth-of-type(4) {
+          height: 8%;
+        }
+        .lines> div:nth-of-type(5) {
+          height: 9%;
+        }
+        .lines> div:nth-of-type(6) {
+          height: 11%;
+        }
+        .lines> div:nth-of-type(7) {
+          height: 13%;
+        }
+        .lines> div:nth-of-type(8) {
+          height: 15%;
+        }
+        .lines> div:nth-of-type(9) {
+          height: 18%;
+        }
+        .lines> div:nth-of-type(10) {
+          height: 26%;
+        }
+  
+        /* ----------------------------------熱銷商品----------------------------------------- */
+        .best_seller {
+          padding-top: 200px;
+          padding-bottom: 200px;
+        }
+        .best_seller_products::after{
+          content:'  BEST \A SELLER' ;
+          font-family: 'Chakra Petch',sans-serif;
+          -webkit-text-stroke: 2px #ff42f6; 
+          font-style: normal;
+          font-weight: 800;
+          font-size: 18rem;
+          line-height: 15rem;
+          text-align: center;
+          text-shadow: 0px 0px 48px #ff42f6;
+          white-space: pre-wrap;
+          color: var(--pink);
+          opacity: 0.4;
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 10%;
+          padding: 0;
+          width: 100%;
+          height: 100vh;
+          z-index: -1;
+        }
+        .circletext {
+          pointer-events: none;
+          padding-top: 50px;
+          width: 100%;
+          height: 100vh;
+          overflow: hidden;
+          z-index: 100;
+          opacity: 1;
+        }
+        .circletextsvg {
+          pointer-events: none;
+          transform-origin: center center;
+          width: calc(12448 / 1920 * 100vw);
+        }
+        .best_seller_products {
+          padding: 0;
+          width: 100%;
+          height: 100vh;
+          overflow: hidden;
+          position: sticky;
+          top: 0;
+        }
+        .p_img_group{
+          width: 70%;
+          bottom: calc(200 / 1920 * 100vw);
+        }
+        .best_seller_products::before {
+          content: ' ';
+          display: block;
+          position: absolute;
+          
+          left: 0;
+          top: 0;
+          padding: 0;
+          width: 100%;
+          height: 100vh;
+          background: url(imgs/pon/digital_landscape_with_techno_wireframe_design_.svg)
+            no-repeat center bottom ;
+          background-size: cover;
+          opacity: 0.6;
+        }
+        
+   
+        .product_img {
+          height: 50vh;
+          cursor: pointer;
+        }
+        
+  
+        .guitar_1 {
+            order: 1;
+            transform: rotate(20deg) scale(70%);
+            transition: 1s;
+        }
+        .guitar_1:hover ,.guitar_3:hover{
+          animation-name: floating;
+          animation-duration: 3s;
+          animation-iteration-count: infinite;
+          animation-timing-function: ease-in-out;
+        }
+  
+        .guitar_2 {
+          order: 2;
+          transform: rotate(20deg) translate(60%, 20%);
+          animation-name: floating2;
+          animation-duration: 4s;
+          animation-iteration-count: infinite;
+          animation-timing-function: ease-in-out;
+        }
+  
+        .guitar_3 {
+          order: 3;
+          transform: rotate(20deg) scale(70%);
+        }
+        @keyframes floating {
+          0% { 
+            transform: translate(0,  0px) rotate(20deg) scale(70%); }
+          50%  {
+            transform: translate(0, 15px) rotate(20deg) scale(70%); }
+          100%   { 
+            transform: translate(0, -0px) rotate(20deg) scale(70%); }   
+        }
+        @keyframes floating2 {
+          0% { 
+            transform: rotate(20deg) translate(60%, 20%); }
+          50%  {
+            transform:  rotate(20deg) translate(63%, 23%); }
+          100%   { 
+            transform:  rotate(20deg) translate(60%, 20%); }   
+        }
+        
+  
+        .oval {
+          width: 200px;
+          height: 80px;
+          background:var(--light);
+          border-radius: 100px / 40px;
+          filter: drop-shadow(0px -18px 9px #66fee6) blur(2px);
+          mix-blend-mode: hard-light;
+          bottom: 50px;
+        }
+        .oval_s {
+          width: 180px;
+          height: 60px;
+          background:gray;
+          border-radius: 90px / 30px;
+          filter:blur(5px);
+          transform: translate(-50% , -5px);
+          bottom: 50px;
+        }
+        .info_frame{
+          background:url(imgs/pon/best_seller_frame-01.svg) no-repeat;
+          background-size: contain;
+          width:calc(350/1920*100vw) ;
+          height: calc(220/1920*100vw);
+          transform: translateY(15px);
+          /* padding:16px 57px 0px 72px; */
+          padding:1% 6% 0% 10%;
+          transition-duration: 0.5s;
+          cursor: pointer;
+        }
+        .info_frame h5{
+          text-align: end;
+          padding-right: 13px;
+          padding-top: 5px;
+          margin-bottom: calc(24/1920*100vw);
+        }
+        .info_frame p{
+          width: 80%;
+          color: var(--light);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        .mb-md-4px{
+          margin-bottom:calc(4/1920*100vw);
+        }
+        .info_frame a{
+          letter-spacing: 2px;
+          padding:1px 5px;
+          text-decoration: none;
+          display: inline-block;
+          position: relative;
+          transition-duration: 0.5s;
+          font-weight: 700;
+          color:var(--light)
+        }
+  
+        .info_frame a::before {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 1px;
+          border-radius: 1px;
+          background: var(--light); 
+          transform:  scale(0);
+          transition-duration: 0.5s;
+         
+        }
+        .info_frame a::after {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          border-radius: 2px;
+          height: 0;
+          background: var(--light); 
+          z-index: -1;
+          transition-duration: 0.5s;
+          /* transform:  scale(0); */
+        }
+        .info_frame:hover{
+          background: url(imgs/pon/best_seller_frame_light.svg) no-repeat;
+          background-size: contain;
+         
+        }
+        .info_frame:hover a{
+          transition-delay: 0.5s;
+          transition-duration: 0.5s;
+          color: var(--dark);
+        }
+        .info_frame:hover .checkout_a::before{
+          transform:  scale(1);
+          transition-duration: 0.5s;
+        }
+        .info_frame:hover .checkout_a::after{
+          transform-origin: center bottom;
+          height: 100%;
+          transition-duration: 0.5s;
+          transition-delay: 0.5s;
+        }
+  
+        .product_info{
+          left: 55%;
+          bottom: 0;
+        }
+        .info_line{
+          width:calc(400/1920*100vw) ;
+        }
+        .go_shopping_btn p{
+          color: var(--light);
+          text-decoration: none;
+          /* animation: change_color 1s infinite; */
+        }
+     
+        .go_shopping_btn i:nth-child(1){
+          animation: change_color 1s infinite ;
+          animation-delay: 0.25s;
+        }
+        .go_shopping_btn i:nth-child(2){
+          animation: change_color 1s infinite ;
+          animation-delay: 0.5s;
+        }
+        .go_shopping_btn i:nth-child(3){
+          animation: change_color 1s infinite ;
+          animation-delay: 0.75s;
+        }
+  
+        @keyframes change_color{
+          0%,25%{
+            color: var(--pink);
+          }
+         26%,100%{
+            color: var(--light);
+          }
+        }
+  
+        .underline{
+          height: 2px;
+          background-color: var(--light);
+          transform: scale(0);
+          transition: 0.5s;
+        }
+        .go_shopping_btn:hover .underline{
+          transform: scale(1);
+        }
+  
+        /* --------------------------------------------推薦系統------------------------------------------------------------- */
+        .recommendation{
+          background-color: transparent;
+          z-index: -1;
+          width:100%;
+          transform-origin:center center;
+        }
+        .bg_video{
+          width: 100%;
+        }
+        .video_row{
+          height: 0;
+        }
+        .recommend_info{
+          width: 70%;
+          top: 20%;
+          z-index: 10;
+          flex-direction: row;
+        }
+        .recommend_text{
+          display: flex;
+          align-items: flex-end;
+          flex-direction: column
+        }
+        .recommend_title{
+          font-family: 'Noto Sans',sans-serif;
+          font-style: normal;
+          font-weight: 700;
+          font-size:calc(170/1920*100vw) ;
+          line-height:calc(218/1920*100vw) ;
+          color: #FFFFFF;
+          text-shadow: 0px 0px 20px #66FEE6;
+        }
+  
+        .heigh_light{
+          position: absolute;
+          top: 0;
+          right: 0;
+          width:100% ;
+          z-index: -1;
+          /* height: fit-content; */
+        }
+        .light1{
+          width: 100%;
+          height: calc(218/1920*100vw);
+          background: linear-gradient(180deg, rgba(102, 254, 230, 0) 0%, rgba(102, 254, 230, 0.5) 100%);
+          filter: blur(32px);
+        }
+        .start_button{
+          color:var(--dark);
+        
+        }
+        .recommend_btn{
+          display: inline-block;
+          background: url(imgs/pon/button.svg) no-repeat;
+          background-size: contain;
+          width:calc(530/1920*100vw) ;
+          height: calc(130/1920*100vw) ;
+          font-family: 'Chakra Petch',sans-serif;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 30px;
+          color: #292560;
+          line-height:75px;
+          text-align: center;
+          transition: 0.5s;
+        }
+        .recommend_btn:hover{
+          filter: drop-shadow(0px 0px 19px #66FEE6);
+        }
+        .z-index{
+          z-index: -100;
+        }
+        .pt-100px{
+          padding-top: 100px;
+        }
+        .pb-100px{
+          padding-bottom: 100px;
+        }
+        .news{
+          margin-bottom: 400px;
+        }
+        .news_marquee{
+          margin-top: 200px;
+          overflow: hidden;
+          height: 150px;
+          transform: rotate(-5deg);
+          width: 120%;
+        }
+        .horizontalline {
+          background: url(imgs/pon/news_maqueer-01.png) repeat-x  ;
+          background-size: contain ;
+          height:150px;
+          width: 100%;
+          animation: line-move 15s linear infinite 0s;
+          display: flex;
+          
+        }
+  
+        .horizontalline2 {
+            background:url(imgs/pon/news_maqueer-01.png) repeat-x  ;
+            background-size: contain;
+            height:150px;
+            width: 100%;
+            animation: line-move2 15s linear infinite 0s;
+            display: flex;
+      
+        }
+        @keyframes line-move{
+                from{transform: translateX(0%) }
+                to{transform: translateX(100%) }}
+  
+        @keyframes line-move2{
+                from{transform: translateX(-100%)}
+                to{transform: translateX(0%)}}
+  
+  
+  
+        .news_content{
+          width: 70%;
+          aspect-ratio: 5/1;
+          background: url(imgs/pon/news_fram.png) no-repeat;
+          background-size: contain;
+          background-position: center center;
+          margin-top: 250px;
+  
+        }   
+        .p_group{
+          position: absolute;
+          top: 30%;
+          height: 50%;
+          width: 100%;
+        }
+        .news_text{
+          
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          color: var(--white);
+          width: 80%;
+          text-underline-offset: 5px;
+        }     
+        .seemore_btn{
+          width: 70%;
+          color: var(--pink);
+          transform: translateX(-15%);
+          text-underline-offset: 5px;
+        }
+        /* ----------------------------------------------------互動特效卡片--------------------- */
+        #my-clip-path-svg{
+          height:0;
+        }
+        .card {
+          width: 71.5vw;
+          height: 112vw;
+          position: relative;
+          overflow: hidden;
+          margin: 0px;
+          overflow: hidden;
+          z-index: 10;
+          touch-action: none;
+          border-radius: 5%/3.5%;
+          /* filter: drop-shadow( -5px -5px 5px -5px var(--color1))
+          drop-shadow( 5px 5px 5px -5px var(--color2))
+          drop-shadow( -7px -7px 10px -5px transparent)
+          drop-shadow( 7px 7px 10px -5px transparent)
+          drop-shadow( 0 0 5px 0px rgba(255, 255, 255, 0))
+          drop-shadow( 0 55px 35px -20px rgba(0, 0, 0, 0.5)); */
+          transition: transform 0.5s ease;
+          will-change: transform, filter;
+          background-color: transparent;
+          }
+        .card img{
+            width: 100%;
+            height: ratio;
+            object-fit: contain;
+            
+          }
+          
+          /* 電腦版 */
+        @media screen and (min-width: 768px) {
+          .card {
+            width: clamp(12.9vw, 61vh, 18vw);
+            height: clamp(21.5vw, 88vh, 28.2vw);
+            margin: 20px;
+  
+          }
+          .card img{
+            width: 100%;
+            height: ratio;
+            object-fit: cover;
+          }
+        }
+  
+        .card:hover {
+    
+        /* filter: drop-shadow(-20px -20px 30px  var(--color1))
+          drop-shadow( 20px 20px 30px  var(--color2))
+          drop-shadow( -7px -7px 10px var(--color1))
+          drop-shadow(7px 7px 10px var(--color2))
+          drop-shadow(  0 0 13px  rgba(255,255,255,0.3))
+          drop-shadow( 0 55px 35px  rgba(0, 0, 0, 0.5)); */
+          
+        } 
+  
+        .card.eevee {
+          --color1: #ec9bb6;
+          --color2: #80aec7;
+          --color3: #b8dcb8;
+          --color4: #8ec5d6;
+          --color5: #9c64b6;
+          --front: var(--eeveefront);
+        }
+  
+        .card:before,
+        .card:after {
+          -webkit-clip-path: url(#my-clip-path);
+          clip-path: url(#my-clip-path);
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          background-repeat: no-repeat;
+          opacity: 0.5;
+          mix-blend-mode: color-dodge;
+          transition: all 0.33s ease;
+        }
+  
+        .card:before {
+          -webkit-clip-path: url(#my-clip-path);
+          clip-path: url(#my-clip-path);
+          background-position: 50% 50%;
+          background-size: 300% 300%;
+          background-image: linear-gradient(
+            115deg,
+            transparent 0%,
+            var(--color1) 25%,
+            transparent 47%,
+            transparent 53%,
+            var(--color2) 75%,
+            transparent 100%
+          );
+          opacity: 0.5;
+          filter: brightness(0.5) contrast(1);
+          z-index: 1;
+        }
+  
+        .card:after {
+          -webkit-clip-path: url(#my-clip-path);
+          clip-path: url(#my-clip-path);
+          opacity: 1;
+          background-image: url("https://assets.codepen.io/13471/sparkles.gif"),
+            url(https://assets.codepen.io/13471/holo.png),
+            linear-gradient(
+              125deg,
+              #ff008450 15%,
+              #fca40040 30%,
+              #ffff0030 40%,
+              #00ff8a20 60%,
+              #00cfff40 70%,
+              #cc4cfa50 85%
+            );
+          background-position: 50% 50%;
+          background-size: 160%;
+          background-blend-mode: overlay;
+          z-index: 2;
+          filter: brightness(1) contrast(1);
+          transition: all 0.33s ease;
+          mix-blend-mode: color-dodge;
+          opacity: 0.75;
+        }
+  
+        .card.active:after,
+        .card:hover:after {
+          filter: brightness(1) contrast(1);
+          opacity: 1;
+        }
+  
+        .card.active,
+        .card:hover {
+          -webkit-animation: none;
+          animation: none;
+          transition: box-shadow 0.3s ease-out;
+        }
+  
+        .card.active:before,
+        .card:hover:before {
+          -webkit-animation: none;
+          animation: none;
+          background-image: linear-gradient(
+            110deg,
+            transparent 25%,
+            var(--color1) 48%,
+            var(--color2) 52%,
+            transparent 75%
+          );
+          background-position: 50% 50%;
+          background-size: 250% 250%;
+          opacity: 0.88;
+          filter: brightness(0.66) contrast(1.33);
+          transition: none;
+        }
+  
+        .card.active:before,
+        .card:hover:before,
+        .card.active:after,
+        .card:hover:after {
+          -webkit-animation: none;
+          animation: none;
+          transition: none;
+        }
+  
+        .card.animated {
+          transition: none;
+          -webkit-animation: holoCard 12s ease 0s 1;
+          animation: MoveLeft 5s ease 0s 1,holoCard 12s ease 5s 1 ;
+        }
+        .card.animated:before {
+          transition: none;
+          -webkit-animation: holoGradient 12s ease 0s 1;
+          animation: holoGradient 12s ease 0s 1;
+        }
+        .card.animated:after {
+          transition: none;
+          -webkit-animation: holoSparkle 12s ease 0s 1;
+          animation: holoSparkle 12s ease 0s 1;
+        }
+  
+        @keyframes holoSparkle {
+          0%,
+          100% {
+            opacity: 0.75;
+            background-position: 50% 50%;
+            filter: brightness(0.6) contrast(0.75);
+          }
+          5%,
+          8% {
+            opacity: 1;
+            background-position: 40% 40%;
+            filter: brightness(0.4) contrast(0.6);
+          }
+          13%,
+          16% {
+            opacity: 0.5;
+            background-position: 50% 50%;
+            filter: brightness(0.6) contrast(0.4);
+          }
+          35%,
+          38% {
+            opacity: 1;
+            background-position: 60% 60%;
+            filter: brightness(0.5) contrast(0.5);
+          }
+          55% {
+            opacity: 0.33;
+            background-position: 45% 45%;
+            filter: brightness(0.6) contrast(0.75);
+          }
+        }
+        @-webkit-keyframes holoGradient {
+          0%,
+          100% {
+            opacity: 0.5;
+            background-position: 50% 50%;
+            filter: brightness(0.25) contrast(1);
+          }
+          5%,
+          9% {
+            background-position: 100% 100%;
+            opacity: 1;
+            filter: brightness(0.75) contrast(1.25);
+          }
+          13%,
+          17% {
+            background-position: 0% 0%;
+            opacity: 0.88;
+          }
+          35%,
+          39% {
+            background-position: 100% 100%;
+            opacity: 1;
+            filter: brightness(0.5) contrast(1);
+          }
+          55% {
+            background-position: 0% 0%;
+            opacity: 1;
+            filter: brightness(0.75) contrast(1.25);
+          }
+        }
+        @keyframes holoGradient {
+          0%,
+          100% {
+            opacity: 0.5;
+            background-position: 50% 50%;
+            filter: brightness(0.25) contrast(0.5);
+          }
+          5%,
+          9% {
+            background-position: 100% 100%;
+            opacity: 1;
+            filter: brightness(0.35) contrast(0.75);
+          }
+          13%,
+          17% {
+            background-position: 0% 0%;
+            opacity: 0.88;
+          }
+          35%,
+          39% {
+            background-position: 100% 100%;
+            opacity: 1;
+            filter: brightness(0.25) contrast(0.5);
+          }
+          55% {
+            background-position: 0% 0%;
+            opacity: 1;
+            filter: brightness(0.35) contrast(0.75);
+          }
+        }
+        @-webkit-keyframes holoCard {
+          0%,
+          100% {
+            transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+          }
+          5%,
+          8% {
+            transform: rotateZ(0deg) rotateX(6deg) rotateY(-20deg);
+          }
+          13%,
+          16% {
+            transform: rotateZ(0deg) rotateX(-9deg) rotateY(32deg);
+          }
+          35%,
+          38% {
+            transform: rotateZ(3deg) rotateX(12deg) rotateY(20deg);
+          }
+          55% {
+            transform: rotateZ(-3deg) rotateX(-12deg) rotateY(-27deg);
+          }
+        }
+        @keyframes holoCard {
+          0%,
+          100% {
+            transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+          }
+          5%,
+          8% {
+            transform: rotateZ(0deg) rotateX(6deg) rotateY(-20deg);
+          }
+          13%,
+          16% {
+            transform: rotateZ(0deg) rotateX(-9deg) rotateY(32deg);
+          }
+          35%,
+          38% {
+            transform: rotateZ(3deg) rotateX(12deg) rotateY(20deg);
+          }
+          55% {
+            transform: rotateZ(-3deg) rotateX(-12deg) rotateY(-27deg);
+          }
+        }
+      
+  
+        .card.eevee:hover:before,
+        .card.eevee.active:before {
+          background-image: linear-gradient(
+            115deg,
+            transparent 20%,
+            var(--color1) 36%,
+            var(--color2) 43%,
+            var(--color3) 50%,
+            var(--color4) 57%,
+            var(--color5) 64%,
+            transparent 80%
+          );
+        }
+    
+        /* -------------手機板---------------------------------------------------------------------------------- */
+        @media screen and (max-width: 768px) {
+          
+  
+          .f_small{
+            font-family: 'Chakra Petch',sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+          }
+          .nav_group {
+            justify-content: flex-end;
+          }
+          .view_box {
+            height: calc(640 / 360 * 100vw);
+          }
+          .p_img_group {
+          width: 80%;
+          bottom: calc(600 / 1920 * 100vw);
+          /* transform: translate(-70%); */
+          }
+          .guitar_1,
+          .guitar_3 {
+            transform: rotate(20deg) scale(50%) ;
+          }
+          .guitar_2 {
+            transform: rotate(20deg) translate(20%, 10%);
+            animation-name: floating_m;
+          }
+          @keyframes floating_m {
+          0% { 
+            transform: rotate(20deg) translate(20%, 10%); }
+          50%  {
+            transform:  rotate(20deg) translate(23%, 13%); }
+          100%   { 
+            transform:  rotate(20deg) translate(20%, 10%); }   
+        }
+          .product_info{
+          pointer-events: none;
+          left: 20%;
+          top: 10%;
+          }
+          .info_frame{
+          width: 288px;
+          height: 199px;
+          }
+          .best_seller{
+            padding-bottom:0px;
+          }
+          .best_seller_products{
+           margin-top: 300px;
+          }
+          .best_seller_products::after{
+          content:'  BEST \A SELLER' ;
+          font-family: 'Chakra Petch',sans-serif;
+          -webkit-text-stroke: 2px #ff42f6; 
+          font-style: normal;
+          font-weight: 800;
+          font-size: 6rem;
+          line-height: 6rem;
+          text-align: center;
+          text-shadow: 0px 0px 48px #ff42f6;
+          white-space: pre-wrap;
+          color: var(--pink);
+          opacity: 0.2;
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 5%;
+          padding: 0;
+          width: 100%;
+          height: 100vh;
+        }
+        .info_frame{
+          padding:24px 23px 0px 69px;
+        }
+        .info_frame h5{
+          font-size:25px ;
+          line-height: 25px;
+          text-align: end;
+          padding-right: 0;
+          margin-bottom: 1rem;
+          padding-right: 8%;
+        }
+        .info_frame p{
+          width: 80%;
+          color: var(--light);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: break-spaces;
+          white-space: nowrap;
+          font-size: 16px;
+        }
+        .info_frame a{
+          font-size: 12px;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .recommend_info{
+          flex-direction: column;
+        }
+        .recommend_title{
+          font-size:calc(47/375*100vw);
+          line-height: calc(47/375*100vw);
+        }
+        .recommend_text{
+          align-items: center;
+        }
+        .recommend_btn{
+          width: 225px;
+          height: 60px;
+        }
+        .recommend_btn h5{
+          font-size: 20px;
+          line-height: 20px;
+        }
+        .light1{
+          width: 100%;
+          height: calc(47/375*100vw);
+          background: linear-gradient(180deg, rgba(102, 254, 230, 0) 0%, rgba(102, 254, 230, 0.5) 100%);
+          filter: blur(32px);
+        }
+        /* ----------------------------最新消息跑馬燈------------------------------- */
+        .pt-100px{
+          padding-top:0;
+        }
+        .news_marquee{
+          margin-top: 100px;
+          overflow: hidden;
+          height: 60px;
+          transform: rotate(-5deg);
+          width: 120%;
+        }
+        .horizontalline {
+          background: url(imgs/pon/news_maqueer-01.png) repeat-x  ;
+          background-size: cover ;
+          height:60px;
+          width: 100%;
+          animation: line-move 15s linear infinite 0s;
+          display: flex;
+          
+        }
+  
+        .horizontalline2 {
+          background:url(imgs/pon/news_maqueer-01.png) repeat-x  ;
+          background-size: cover;
+          height:60px;
+          width: 100%;
+          animation: line-move2 15s linear infinite 0s;
+          display: flex;
+     
+        }
+        .news_content{
+          width: 70%;
+          /* height: 50vh; */
+          aspect-ratio: unset;
+          background: transparent;
+          margin-top: 60px;
+        }   
+  
+   
+        .news_title p{
+          display: inline-block;
+          background: #ffffff3a;
+          /* border-radius: 5px; */
+          color: var(--pink);
+          font-weight: 700;
+          padding: 2px 15px;
+          border-left: var(--pink) 5px solid;
+          border-right: var(--pink) 5px solid;
+  
+        }
+        .p_group{
+          position: static;
+          transform: unset;
+          background: #ffffff3a;
+          border-radius: 5px;
+          height: unset;
+          /* padding: 2rem 1rem; */
+          padding-top: 1.5rem;
+          padding-bottom: .5rem;
+        }
+        .news_text{
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          color: var(--white);
+          width: 80%;
+          padding-bottom: 22px;
+          text-underline-offset: 5px;
+        }  
+        .seemore_btn{
+          transform: unset;
+        
+        }
+        .news{
+            margin-bottom: 180px;
+          }
+        .logo_group{
+          background-color:#292560;
+          position: relative;
+          top: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      
+        }
+        /* -------------推薦區 雜訊效果---------------------------------------------------------------------------------- */
+        @keyframes glitch-anim {
+            0%,
+            5% {
+              clip-path: polygon(0% 10%, 100% 10%, 100% 15%, 0% 15%);
+            }
+            6%,
+            10% {
+              clip-path: polygon(0% 40%, 100% 40%, 100% 42%, 0% 42%);
+            }
+            11%,
+            15% {
+              clip-path: polygon(0% 75%, 100% 75%, 100% 80%, 0% 80%);
+            }
+            16%,
+            20% {
+              clip-path: polygon(0% 20%, 100% 20%, 100% 22%, 0% 22%);
+            }
+            21%,
+            25% {
+              clip-path: polygon(0% 87%, 100% 87%, 100% 93%, 0% 93%);
+            }
+            26%,
+            30% {
+              clip-path: polygon(0% 30%, 100% 30%, 100% 45%, 0% 45%);
+            }
+            31%,
+            50% {
+              clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+            }
+            51%,
+            55% {
+              clip-path: polygon(0% 10%, 100% 10%, 100% 15%, 0% 15%);
+            }
+            56%,
+            60% {
+              clip-path: polygon(0% 40%, 100% 40%, 100% 42%, 0% 42%);
+            }
+            61%,
+            65% {
+              clip-path: polygon(0% 75%, 100% 75%, 100% 80%, 0% 80%);
+            }
+            66%,
+            70% {
+              clip-path: polygon(0% 20%, 100% 20%, 100% 22%, 0% 22%);
+            }
+            71%,
+            75% {
+              clip-path: polygon(0% 87%, 100% 87%, 100% 93%, 0% 93%);
+            }
+            76%,
+            80% {
+              clip-path: polygon(0% 30%, 100% 30%, 100% 45%, 0% 45%);
+            }
+            81%,
+            85% {
+              clip-path: polygon(0% 20%, 100% 20%, 100% 22%, 0% 22%);
+            }
+            86%,
+            95% {
+              clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+            }
+          }
+        .wrapper_g {
+          position: relative;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+        .wrapper_g img {
+          max-width: 100%;
+          height: auto;
+        }
+  
+        .glitched {
+          /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+          animation: glitch-anim 1s 0s infinite linear alternate-reverse; 
+          
+          background-color: rgba(200, 0, 0, 0.1);
+          background-blend-mode: screen;
+          background-size: contain;
+          clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+          position: absolute;
+          top: 0;
+          transform: translateX(-8px);
+        }
+  
+        .glitched:nth-child(2) {
+          animation-delay: 0.5s;
+          background-color: rgba(0, 200, 0, 0.15);
+          background-blend-mode: screen;
+          transform: translateX(16px);
+        }
+  
+        .glitched:nth-child(3) {
+          animation-delay: 0.8s;
+          background-color: rgba(0, 0, 200, 0.15);
+          background-blend-mode: screen;
+          transform: translateX(8px);
+        }
+  
+        .glitch-pause {
+          animation: none;
+        }
+        .wrapper_1,.wrapper_2,.wrapper_3{
+          opacity: 1;
+          transition-duration: .5s;
+        }
+        /* ---------------------logo遮罩----------------------------------- */
+        .logo_group{
+          /* background-color: aquamarine; */
+          background-color:#292560;
+          
+          position: sticky;
+          top: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .logo_hidden{
+          pointer-events: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .fixed-top{
+          z-index: -1;
+        
+        }
+  
+    </style>
+</head>
+
+<body> 
+    <header class="">
+        <div class="container-fluid navbar_all gx-0  " id="control_navbar_all">
+            <div class="row gx-0 navbar-glass  ">
+                <div class="col-12 d-flex align-items-center   justify-content-md-center align-items-md-center text-md-center  ">
+                    <div class="border-line-left d-none d-md-block" style="width: 1px; height: 100%;"> </div>
+                    <div onclick="navbarMove();return false;" class="col-auto control_scaling_wrap  d-flex align-items-center justify-content-center">
+                        <a class="control_scaling">
+                            <i class="bi bi-chevron-double-right control_scaling_icon"></i>
+                        </a>
+                        <a class="control_scaling_change">
+                            <i class="bi bi-chevron-double-left  control_scaling_icon" style="display: none;"></i>
+                        </a>
+                    </div>
+
+                    <div class="col-auto logo   d-flex align-items-center justify-content-center ">
+                        
+                        <a href="#" class="text-dark ">
+                            <img src="./imgs/pon/no-background05.svg" alt="" class="logo-icon ">
+                        </a>
+                    </div>
+
+                    <div class=" col-auto col-xl-5  frost "></div>
+
+
+                    <div class="border-line-left d-none d-md-block" style="width: 1px; height: 100%;"> </div>
+                    <div class="col navbar_button d-none d-md-inline ">
+                        <ul class="m-0  list-unstyled  ">
+                            <li class="m-0">
+                                <a href="#" class="text-decoration-none text-white  ">電吉他</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="border-line-left d-none d-md-block" style="width: 1px; height: 100%;"> </div>
+
+
+                    <div class="col navbar_button d-none d-md-inline ">
+                        <ul class="m-0 list-unstyled">
+                            <li class="m-0">
+                                <a href="#" class="text-decoration-none text-white  ">推薦系統</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="border-line-left d-none d-md-block" style="width: 1px; height: 100%;"> </div>
+
+                    <div class="col navbar_button d-none d-md-inline">
+                        <ul class="m-0 list-unstyled">
+                            <li class="m-0">
+                                <a href="#" class="text-decoration-none text-white  ">客製系統</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="border-line-left d-none d-md-block" style="width: 1px; height: 100%;"> </div>
+
+
+                    <div class="col navbar_button d-none d-md-inline">
+                        <ul class="m-0 list-unstyled">
+                            <li class="m-0">
+                                <a href="#" class="text-decoration-none text-white  ">配件</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="border-line-left d-none d-md-block" style="width: 1px; height: 100%;"> </div>
+
+                    <div class="col navbar_button d-none d-md-inline position-relative">
+                        <ul class="m-0 list-unstyled ">
+                            <li class="m-0 service_items">
+                                <a href="#" class="text-decoration-none text-white " onclick="neoitems();return false;">服務項目</a>
+                            </li>
+                            
+                        </ul>
+
+                        <div class=" service_items_action" id="service_items_action01" style="display: none;">
+                            <ul class="col m-0 list-unstyled position-absolute service_items01  navbar-glass d-flex flex-column align-items-center justify-content-center" style="top: 32px; left: 0; height: 40px; width: 140px; ">
+
+                                <li class="m-0 d-flex align-items-center " style="height: 40px;">
+                                    <a href="#" class="text-decoration-none text-white  ">自行保養</a>
+                                </li>
+
+                            </ul>
+
+                            <ul class="col m-0 list-unstyled position-absolute service_items02 navbar-glass d-flex flex-column align-items-center justify-content-center" style="top: 72px; left: 0; height: 40px; width: 140px; ">
+
+                                <li class="m-0 d-flex align-items-center" style="height: 40px;">
+                                    <a href="#" class="text-decoration-none text-white  ">送件維修</a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="border-line-left d-none d-md-block" style="width: 1px; height: 100%;"> </div>
+
+
+                    <div class="col-auto    col-md-1  navbar_button_icon ms-auto position-relative">
+
+                        <ul class="m-0 list-unstyled ">
+                            <li class="m-0">
+                                <!-- <a href="#" class="text-white fs-5 d-flex justify-content-center" onclick="neoitemsmember();return false;">
+                                    <i class="fa-solid fa-user"></i>
+                                </a> -->
+                                <a href="#" class="text-white fs-5 d-flex justify-content-center" onclick="neoitemsmember();return false;">
+                                    <i class="fa-solid fa-user"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class=" service_items_action02" id="service_items_action02" style="display: none;">
+                            <ul class="col m-0 list-unstyled position-absolute service_items02  navbar-glass d-flex flex-column align-items-center justify-content-center" style="top: 34px; left: 0; height: 40px;  min-width: 43px">
+                                <li class="m-0 d-flex align-items-center " style="height: 40px;">
+                                    <a href="#" class="text-decoration-none text-white  ">登入會員</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="border-line-left d-none d-md-block" style="width: 1px; height: 100%;"> </div>
+                    <!-- 加class name cart_btn -->
+                    <div class="col-auto  col-md-1  navbar_button_icon  me-2 me-md-0 cart_btn" onclick="updateCartList(event)">
+                        <ul class="m-0 list-unstyled">
+                            <li class="m-0">
+                                <a href="#" class=" text-white fs-5 ">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-auto col-md-1 navbar_button_icon me-2 me-md-0 d-md-none">
+                        <div class="hamburger1 hamburger" id="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="border-line-left d-none d-md-block" style="width: 1px; height: 100%;"> </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-overlay d-md-none" id="menu-overlay">
+            <ul class="nav">
+                <li><a href="#">電吉他</a></li>
+                <li><a href="#">推薦系統</a></li>
+                <li><a href="#">客製系統</a></li>
+                <li><a href="#">配件</a></li>
+                <li><a href="#">自行保養</a></li>
+                <li><a href="#">送件維修</a></li>
+            </ul>
+        </div>
+
+
+
+        <!-- ----------------------------購物車視窗---------------------------------- -->
+        <div class="cart_window animate__animated">
+            
+            <div class="c_card  animate__animated ">
+                <div class="card_title d-flex mx-5 pt-4">
+                    <i class="fa-solid fa-cart-shopping pt-1 pe-2"></i>
+                    <p class="p-0 product_quantity"></p>
+                </div>
+     
+                <div class="card_product_group mx-5 pe-1 ">
+                    <div class="p_card cart-item row py-3 gx-0">
+                        <div class="col-4  ">
+                            <div class="card_img">
+                                <img src="imgs/FC300108-f.png" alt="">
+                            </div>
+                        </div>
+                        <div class="col-7 px-2">
+                            <div class="card_text ">
+                                <p class="f_small f-md-p p_title pb-2 m-0">PLAYER PLUS STRATOCASTER </p>
+                                <p class="f_small f-md-p p_color pb-2 m-0">黑色</p>
+                                <p class="f_small f-md-p p_price pb-2 m-0" >39,900</p>
+                                <p class="f_small f-md-p p_quantity pb-1 " >數量 : 1</p>
+                            </div>
+                        </div>
+                        <div class="col-1 card_btn pt-2 text-center">
+                            <a class="" href=#>
+                                <i class="fa-solid fa-trash-can " style="color: #ffffff;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card_detail mx-5 p-2 d-flex flex-column justify-content-between ">
+                    <div class="detail_group">
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-1 text-black">商品總金額</p>
+                            <p class="mb-1 totalPrice text-black">39,900</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-1 text-black">運費總金額</p>
+                            <p class="mb-1"><span class="text-decoration-line-through text-black">NT.300</span>NT.0</p>
+                        </div>
+                        <div class="text-end">
+                            <p class="mb-1 f_small text-black border text-black">5/1-5/31周年慶全館免運</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3 border-top">
+                        <p class="mb-1 text-black">應付總金額</p>
+                        <p class="mb-1 totalPrice text-black">39,900</p>
+                    </div>
+                </div>
+                <div class="card_btn px-5 d-flex justify-content-between mt-3">
+                    <a  class="back_btn me-4 position-relative text-decoration-none text-center d-flex justify-content-center align-items-center" href="#">
+                        <svg class="back_btn_svg" width="283" height="50" viewBox="0 0 283 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.5 29.9232V19.0192L19.7723 0.5H31.1198L0.5 29.9232Z" stroke="#66FEE6"/>
+                            <path d="M1.04062 49.5L52.0333 0.5H281.5V12.0381L242.515 49.5H1.04062Z" stroke="#66FEE6"/>
+                            <path d="M281.501 49.5004H263.429L281.501 32.1348V49.5004Z" stroke="#66FEE6"/>
+                        </svg>
+                        
+                    </a>
+                    <a class="pay_btn position-relative text-decoration-none text-black d-flex justify-content-center align-items-center" href="#">
+                        <svg class="pay_btn_svg" width="282" height="50" viewBox="0 0 282 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_825_12777)">
+                                <path d="M19.571 0L0 18.8062V31.0971L32.3617 0H19.571Z" fill="#66FEE6"/>
+                                <path d="M282 0H51.8321L0 49.8065V50H242.716L282 12.2511V0Z" fill="#66FEE6"/>
+                                <path d="M281.999 30.9609L262.186 50.0004H281.999V30.9609Z" fill="#66FEE6"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_825_12777">
+                                    <rect width="282" height="50" fill="white"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        
+                    </a>
+                </div>
+        
+            </div>
+            <div class="c_return animate__animated"></div>
+        </div>
+        <!-- ----------------------------購物車視窗-結束--------------------------------- -->
+        </div>
+        </div>
+    </header> 
+    <div class="container-fluid">
+        <div  class="row p-0 m-0 z-index w-100  video_row  fixed-top" >
+            <div  class="bg_video p-0 overflow-hidden  ">
+              <video  autoplay loop muted poster="">
+                <source src="imgs/pon/video/cyber_punk_animate.mp4" type="video/mp4" />
+              </video> 
+            </div>
+          </div>
+    </div>
+    <div id="skrollr-body">
+        <section class="hero_section">
+        <div class="full-container">
+            <div class="row p-0 m-0">
+            <div class="view_box w-100 bg-black position-relative">
+                <video
+                class="position-absolute"
+                autoplay
+                loop
+                muted
+                poster="imgs/pon/card2-05fn.jpg">
+                <source src="imgs/pon/video/miyavi_live.mp4" type="video/mp4" />
+                </video>
+
+            
+                <div class="vk_marquee position-relative">
+                <h1 class="vk_horizontalline position-absolute">NEONOISE</h1>
+                <h1 class="vk_horizontalline2 position-absolute">NEONOISE</h1>
+                </div>
+            </div>
+            <div class="blinds mt-auto p-0">
+                <div class="text_group">
+                <h1 class="music">MUSIC</h1>
+                <h1 class="life">LIFE</h1>
+                </div>
+                <div class="lines position-absolute d-flex flex-column justify-content-between">
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                    <div class="line" data-center-top="transform:scale(1,0)" data-100-top="transform:scale(1,1)"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+        <section class="best_seller ">
+        <div class="full-container">
+            <div class="row position-relative" style="height:200vh;"><!--160 mb -->
+            <div class="circletext position-absolute">
+                <img class="circletextsvg"  data-bottom-top="transform:translate(-40%, 0%) rotate(14deg) " data--300-top="transform:translate(-60%,0%) rotate(-30deg) ;"src="imgs/pon/circletext.svg" alt="" />
+            </div>
+            <!-- <div class="best_seller_products" data-top-top="opacity:<?= $isMobile ? 1 : 0 ?>"   data-<?= $isMobile ? 300 : -300 ?>-top="opacity:<?= $isMobile ?0 : 1 ?>" > -->
+            <div class="best_seller_products" data-top-top="opacity: 0"   data--300-top="opacity: 1 " >
+                <div class="oval position-absolute  left-50">
+                <div class=" oval_s position-absolute bottom-0 left-50"></div>
+                </div>
+                <div class="p_img_group d-flex justify-content-between position-absolute left-50">
+                <div class="product_img guitar_1 wrapper_1"  data-pid="15">
+                    <img class=" h-100 glitchme" src="imgs/pon/FC300701-f.png" data-glitch-count="3" alt="glitch" />
+                </div>
+                <div class="product_img guitar_2 wrapper_2"  data-pid="53">
+                    <img class=" h-100 glitchme"src="imgs/pon/GC401507-f.png" data-glitch-count="3" alt="glitch"/>
+                </div>
+                <div class="product_img guitar_3 wrapper_3"  data-pid="74">
+                    <img class=" h-100 glitchme"src="imgs/pon/ID300702-f.png" data-glitch-count="3" alt="glitch"/>
+                </div>
+                </div>
+                <div class="product_info position-absolute pb-4">
+                <div class="d-flex justify-content-end  align-items-md-end">
+                    <div class="info_line d-none d-md-block">
+                        <img class="w-100" src="imgs/pon/best_seller_line.svg" alt="">
+                    </div>
+                    <div class="info_frame position-relative">
+                        <h5>Gibson</h5>
+                        <p class="  m-0 ">70s Flying V</p>
+                        <p class=" m-0 mb-md-4px mb-0"> $74,970</p>
+                        <a class="checkout_a" href="#">立即選購</a>
+                    </div>
+                </div>
+                
+                
+                </div>
+                <div class="go_shopping_btn position-absolute bottom-0 end-0 pe-2 pb-2 pb-md-4 pe-md-5">
+                <a class="d-inline-block  d-flex justify-content-end  text-decoration-none" href="#">
+                    <p class="m-0 ">電吉他專區 <i class="fa-solid fa-angles-right"></i><i class="fa-solid fa-angles-right"></i><i class="fa-solid fa-angles-right"></i></p>
+                </a>
+                <div class="underline"></div>
+                </div>
+                
+                
+            </div>
+            </div>
+        </div>
+        </section>
+
+
+        <div class="recommend_sec">
+        <div class="row1 position-relative" style="height:1400vh;padding-bottom:1400px;">
+        <!-- <div class="row1 position-relative" style="height:<?= $isMobile ? "4000px" : "1400vh" ?>;<?= $isMobile ? 'margin-bottom:600px' : 'padding-bottom:1400px;' ?>  "> -->
+            <div class="logo_group" style="height:100vh;" data-anchor-target=".row1" data--2000-top="background-color:rgb(41, 37, 96)"  data--3000-top="background-color:rgba(41, 37, 96,0)"  >
+            <!-- <div class="logo_group" style="height:100vh;" data-anchor-target=".row1" <?= $isMobile ? 'data-top="transform:translate(0,0px);background-color:rgb(41, 37, 96)" data--300-top="transform:translate(0,300px);background-color:rgb(41, 37, 96)" data-bottom-bottom="transform:translate(0,3333px);background-color:rgb(41, 37, 96,0)"' : 'data--2000-top="background-color:rgb(41, 37, 96)"  data--3000-top="background-color:rgba(41, 37, 96,0)"' ?>  > -->
+
+
+            <section class="recommendation position-absolute top-0 " >
+                <div class=" position-relative ">
+                
+                <div class="row video_bg_content ">
+                    <div class="row recommend_info mx-auto pt-100px pb-100px "data-anchor-target=".row1" data--2000-top="transform:scale(0);" data-3000-bottom="transform:scale(1);"  >
+                    <!-- <div class="row recommend_info mx-auto pt-100px pb-100px "data-anchor-target=".row1" <?= $isMobile ? 'data--300-top="transform:scale(0);" data--3300-top="transform:scale(1);"' : 'data--2000-top="transform:scale(0);" data-3000-bottom="transform:scale(1);"' ?>  > -->
+                    <div class="recommend_card col-12 col-md-4 pb-2 pb-md-0 ">
+                    <style class="hover"></style>
+                    <svg class="svg" id="my-clip-path-svg">
+                        <clipPath id="my-clip-path" clipPathUnits="objectBoundingBox"><path d="M0.966,0.504 L0.923,0.531 V0.606 V0.647 C0.923,0.65,0.927,0.653,0.932,0.653 H0.935 H0.947 L0.962,0.662 V0.841 L0.999,0.863 V0.952 L0.923,1 H0.53 L0.458,0.956 H0.039 L0,0.931 V0.606 L0.032,0.584 V0.284 L0,0.263 V0.063 L0.046,0.033 H0.783 L0.835,0 H0.966 L1,0.025 V0.284 L0.966,0.304 V0.504"></path></clipPath>
+                    </svg>
+                    <div class="card animated">
+                        <img class=" eevee   w-100 h-100 position-absolute " src="./imgs/pon/recommend_card.svg" alt="" />
+
+                    </div>
+                    
+                    <!-- <img class="w-100 h-100" src="imgs/pon/recommend_card.svg" alt=""> -->
+                    </div>
+                    <div class="recommend_text col-12 col-md-8  position-relative text-end d-flex" >
+                        <p class="recommend_title" >專屬於你的 <br> 搖滾電吉他</p>
+                        <div class="heigh_light">
+                        <div class="light1"></div>
+                        <div class="light1"></div>
+                        </div>
+                        <p class="recommend_content  text-white text-end">全台唯一客製化電吉他</p>
+                
+                        <a href="#" class="position-relative recommend_btn d-flex justify-content-center align-items-center text-decoration-none" >
+                        <h5 class="start_button ">[立即開始]</h5>
+                        </a>
+                    </div>
+
+                    </div>
+
+                    <div class="row news pt-100px p-0 overflow-hidden ">
+                    <div class="news_marquee position-relative">
+                        <div class="horizontalline position-absolute"></div>
+                        <div class="horizontalline2 position-absolute"></div>
+                    </div>
+                    <div class="news_content mx-auto position-relative ">
+                        <div class="news_title d-block d-md-none text-center">
+                        <p>最新消息</p>
+                        </div>
+                        <div class="p_group position-md-absolute left-50  mt-md-3 d-flex flex-column justify-content-between">
+                        <p class="news_text f_small f-md-p mx-auto text-decoration-underline text-center">2019 Ibanez AZ2204 限量版 GD ，SCR到貨啦!</p>
+                        <p class="news_text f_small f-md-p mx-auto text-decoration-underline text-center">Yamaha | 買Stagepas400BT & 600BT藍芽攜帶型PA組，最高送3000元郵政現金禮券！即日起 - 6/10(一)止</p>
+                        <p class="news_text f_small f-md-p mx-auto text-decoration-underline text-center">美國專業音訊廠牌 | PreSonus全面8折！即日起-5/31(五)</p>
+                        </div>
+                        
+                    </div>
+                    <a class="seemore_btn mx-auto text-end" href="">see more...</a>
+                    
+                    </div>
+                </div> 
+                </div>
+            </section>
+            <!-- logo遮罩 -->
+            <div class="logo_hidden" style="overflow: hidden;height: 100vh;"> 
+                <svg style="overflow:visible; "  width="600" height="600" viewBox="0 0 600 600" enable-background="new 0 0 600 600"fill="none" xmlns="http://www.w3.org/2000/svg" data-anchor-target=".row1" data--2000-top="width:32vw;height:32vw;transform:translate(1px,0)"  data-4000-bottom="width:8160vw;height:8160vw;transform:translate(-1585px,0)" >
+                <!-- <svg style="overflow:visible; "  width="600" height="600" viewBox="0 0 600 600" enable-background="new 0 0 600 600"fill="none" xmlns="http://www.w3.org/2000/svg" data-anchor-target=".row1" <?= $isMobile ? 'data--200-top="width:32vw;height:32vw;transform:translate(1px,0)"  data--3000-top="width:8160vw;height:8160vw;transform:translate(-310px,0)"' :  'data--2000-top="width:32vw;height:32vw;transform:translate(1px,0)"  data-4000-bottom="width:8160vw;height:8160vw;transform:translate(-1585px,0)"' ?> > -->
+                <rect x="150" y="150" width="300" height="300" fill="#fff" data-anchor-target=".row1" data-top-top="opacity:0" data--2000-top="opacity:1" data--3000-top="opacity:0"/>
+                <!-- <rect x="150" y="150" width="300" height="300" fill="#fff" data-anchor-target=".row1" data-top-top="opacity:0" data-<?= $isMobile ? -100:-2000 ?>-top="opacity:1" data-<?= $isMobile ? -1200 :-3000 ?>-top="opacity:0"/> -->
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M600 0H0V600H600V0ZM167.846 279.4H160.77V320H168.368V292.508H168.484L186.58 320H193.656V279.4H186.058V306.95H185.942L167.846 279.4ZM230.559 279.4H201.211V320H230.559V313.33H209.099V302.89H228.877V296.336H209.099V286.07H230.559V279.4ZM235.805 286.07V313.33L242.475 320H263.355L270.025 313.33V286.07L263.355 279.4H242.475L235.805 286.07ZM262.137 310.314L259.179 313.272H246.651L243.693 310.314V289.086L246.651 286.128H259.179L262.137 289.086V310.314ZM284.073 279.4H276.997V320H284.595V292.508H284.711L302.807 320H309.883V279.4H302.285V306.95H302.169L284.073 279.4ZM316.858 286.07V313.33L323.528 320H344.408L351.078 313.33V286.07L344.408 279.4H323.528L316.858 286.07ZM343.19 310.314L340.232 313.272H327.704L324.746 310.314V289.086L327.704 286.128H340.232L343.19 289.086V310.314ZM366.227 279.4H358.339V320H366.227V279.4ZM373.209 307.936V313.736L379.473 320H398.265L404.645 313.62V302.194L398.381 295.93H383.011L381.097 294.016V288.042L383.011 286.128H394.495L396.409 288.042V291.522H404.181V285.664L397.917 279.4H379.589L373.325 285.664V296.394L379.589 302.658H394.959L396.873 304.572V311.3L394.901 313.272H382.895L380.981 311.358V307.936H373.209ZM440.356 279.4H411.008V320H440.356V313.33H418.896V302.89H438.674V296.336H418.896V286.07H440.356V279.4Z" fill="#292560"/>
+                </svg>
+            </div>
+            
+
+            </div>
+        </div>
+        </div>
+        <footer class="">
+            <div class="container-fluid gx-0">
+                <div class="row gx-0">
+
+                    <div class="col-12 ft-bg-wrap  ">
+
+                        <div class="col-12 ft-bg-img ">
+                            <img src="./imgs/pon/footer-lines.svg" alt="" class="w-100">
+                        </div>
+
+                    </div>
+
+                    <div class="ft-content d-flex flex-column justify-content-center align-items-center ">
+                        <h3 class="m-0  d-flex justify-content-center text-white ft-bg-logotext text-center me-md-1">
+                            NeoNoise
+                        </h3>
+                        <div class="col-12 d-flex justify-content-center align-items-center ft-button ">
+                            <a href="./product-list-ajax.php" class="m-0 text-white text-decoration-none me-3 ">電吉他</a>
+                            <a href="./Recommend_Game.php" class="m-0 text-white text-decoration-none  me-3">推薦系統</a>
+                            <a href="#" class="m-0 text-white text-decoration-none me-3 ">客製系統</a>
+                            <a href="#" class="m-0 text-white text-decoration-none  me-3 me-md-4 ">聯繫我們</a>
+
+                        </div>
+                        <div class="col-12   d-flex  justify-content-center text-center ft-text me-md-3 ">
+                            <p class="m-0">There is no best guitar, only the one that suits you best! <br> Find your perfect
+                                rock tool, unique style is up to you! <br> ©2023 NeoNoise</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </footer>
+    </div>
+
+
+
+
+
+
+   
+    
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    <script>
+        // navbar 橫幅伸縮 JS開始
+        const navbar = document.querySelector('.navbar_all');
+        const controlIcon = document.querySelector('.control_scaling_icon');
+
+        function navbarMove() {
+            navbar.classList.toggle('hidden');
+            controlIcon.classList.toggle('bi-chevron-double-right');
+            controlIcon.classList.toggle('bi-chevron-double-left');
+
+        };
+
+        // navbar 橫幅伸縮 JS結束
+
+
+        // 服務項目 點擊後下拉式出現 開始
+        const itemsonoff = document.getElementById("service_items_action01");
+
+        function neoitems(e) {
+            //  console.log('test123');
+
+            if (itemsonoff.style.display == 'none') {
+                document.getElementById("service_items_action01").style.display = "block";
+            } else {
+                document.getElementById("service_items_action01").style.display = "none";
+            }
+        };
+        // 服務項目 點擊後下拉式出現 結束
+
+
+
+        //會員按鈕 點擊後下拉式 出現登入登出 開始
+
+        const itemmemberoff = document.getElementById("service_items_action02");
+
+        function neoitemsmember(e) {
+            //  console.log('test123');
+
+            if (itemmemberoff.style.display == 'none') {
+                document.getElementById("service_items_action02").style.display = "block";
+            } else {
+                document.getElementById("service_items_action02").style.display = "none";
+            }
+        };
+
+        // 會員按鈕 點擊後下拉式 出現登入登出 結束
+
+
+        // 漢堡 JS 開始
+
+        $(document).ready(function() {
+            $('.hamburger').click(function() {
+                $(this).toggleClass('open');
+                $('.menu-overlay').toggleClass('open');
+            });
+
+
+        });
+
+        // 漢堡 JS 結束
+
+        let window_status = false;
+
+        // ------------開啟購物車視窗---------------------------
+        function openCartWindow() {
+            window_status = true
+            $('.cart_window').show();
+            $('.c_return').addClass("animate__slideInDown").one('animationend', function() {
+                $('.c_return').show();
+                $('.c_return').removeClass("animate__slideInDown");
+                $('.c_card').show();
+                $('.c_card').addClass("animate__slideInRight").one('animationend', function() {
+                    $('.c_card').show();
+                    $('.c_card').removeClass("animate__slideInRight");
+                    $('.cart_window').css("background", "var(--dark)");
+                })
+            });
+            $('.cart_btn').find('.fa-cart-shopping').addClass('fa-xmark').removeClass('fa-cart-shopping');
+            
+        }
+
+
+        //--------------------------- 關閉購物車視窗-----------------
+        function closeCartWindow() {
+            window_status = false
+            $('.cart_window').css("background", "transparent");
+            $('.c_card').addClass("animate__slideOutRight").one('animationend', function() {
+                $('.c_card').hide();
+                $('.c_card').removeClass("animate__slideOutRight");
+                $('.c_return').addClass("animate__slideOutUp").one('animationend', function() {
+                    $('.cart_window').hide();
+                    $('.c_return').removeClass("animate__slideOutUp");
+                })
+            });
+            $('.fa-xmark').addClass('fa-cart-shopping').removeClass('fa-xmark');
+        }
+
+
+        // ------即時生成購物車內容 內容放在cart-content 塞進去
+        function updateCartList() {
+            if (window_status) {
+                closeCartWindow();
+            } else {
+                // fetch('parts/cart-content.php')
+                //     .then(r => r.text())
+                //     .then(txt => {
+                //         $('.cart_window').html(txt);
+                        $('.c_card').hide();
+                        openCartWindow();
+                        // calcTotalCart();
+                    // })
+            }
+
+        }
+
+        // ----------購物車視窗 繼續逛逛按鈕------------
+
+        $('.cart_window').on("click", ".back_btn", function() {
+            closeCartWindow();
+        })
+
+        
+
+
+    </script>
+    <!-- 視差滾動外掛 skrollr -->
+    <script type="text/javascript" src="./js/pon/skrollr-master/skrollr-master/skrollr.min.js"></script>
+    <script type="text/javascript" src="./js/pon/skrollr-colors-master/skroll-colors.min.js"></script>
+    <script>
+      var skrollr_obj = skrollr.init();
+      //---------------------------雜訊效果 glitch ------------------------------------------
+      // 1.三張照片做出雜訊效果->消失
+      function glitch11(e){ 
+        return new Promise(resolve => {
+          var wrapper1 = document.querySelector(".wrapper_1");
+          var img1 = document.querySelector(".wrapper_1 .glitchme");
+          var count1 = Number(img1.dataset.glitchCount);
+          var wrapper2 = document.querySelector(".wrapper_2");
+          var img2 = document.querySelector(".wrapper_2 .glitchme");
+          var count2 = Number(img2.dataset.glitchCount);
+          var wrapper3 = document.querySelector(".wrapper_3");
+          var img3 = document.querySelector(".wrapper_3 .glitchme");
+          var count3 = Number(img3.dataset.glitchCount);
+
+          for (var i = 0; i < count1; i++) {
+            var glitch = document.createElement("div");
+            // add cloned image to div wrapper
+            glitch.className += " glitched glitch-" + i;
+            glitch.style =
+              "background-image: url(" + img1.getAttribute("src") +"); width: " +img1.width +"px; height:" +img1.height +"px";
+            wrapper1.appendChild(glitch);
+          } 
+          for (var i = 0; i < count2; i++) {
+            var glitch = document.createElement("div");
+            // add cloned image to div wrapper
+            glitch.className += " glitched glitch-" + i;
+            glitch.style =
+              "background-image: url(" + img2.getAttribute("src") +"); width: " +img2.width +"px; height:" +img2.height +"px";
+            wrapper2.appendChild(glitch);
+          } 
+          for (var i = 0; i < count3; i++) {
+            var glitch = document.createElement("div");
+            // add cloned image to div wrapper
+            glitch.className += " glitched glitch-" + i;
+            glitch.style =
+              "background-image: url(" + img3.getAttribute("src") +"); width: " +img3.width +"px; height:" +img3.height +"px";
+            wrapper3.appendChild(glitch);
+          } 
+            $('.wrapper_1').css("opacity","0.3").css("transition-delay","0.7s");
+            $('.wrapper_2').css("opacity","0.3").css("transition-delay","0.7s");
+            $('.wrapper_3').css("opacity","0.3").css("transition-delay","0.7s");
+
+            setTimeout(() => {
+            $('.wrapper_1').hide();
+            $('.wrapper_2').hide();
+            $('.wrapper_3').hide();
+            resolve();
+          }, 1000);  
+        })
+      }
+
+      // 2.吉他換位置->顯示吉他
+      function changephoto(e){ 
+        return new Promise(resolve => {
+          // console.log(event);
+          let item =$(e.target).closest('.product_img');
+          let cont = $('.p_img_group');
+          let preitem = item.siblings().eq(0);
+          let nextitem = item.siblings().eq(1); 
+          let info_num = item.attr("data-pid");
+          // 吉他換位置  
+          $('.p_img_group').children().removeClass('guitar_1').removeClass('guitar_2').removeClass('guitar_3');
+          item.addClass('guitar_2');
+          preitem.addClass('guitar_1');
+          nextitem.addClass('guitar_3');
+          console.log(222);
+          setTimeout(() => {
+            $('.wrapper_1').show();
+            $('.wrapper_2').show();
+            $('.wrapper_3').show();
+            resolve()
+          }, 500);
+          // 換資訊欄訊息
+          $('.product_info .info_frame').children().remove()
+          if(info_num=='15'){
+            $('.product_info .info_frame').append(`<h5>Fender</h5>
+                    <p class="  m-0 ">PLAYER PLUS STRATOCASTER</p>
+                    <p class=" m-0 mb-2"> $33,000</p>
+                    <a class="checkout_a" href="#">立即選購</a>`)
+          }else if(info_num=='53'){
+            $('.product_info .info_frame').append(`<h5>Gibson</h5>
+                    <p class="  m-0 ">70s Flying V</p>
+                    <p class=" m-0 mb-2"> $74,970</p>
+                    <a class="checkout_a" href="#">立即選購</a>`)
+          }else if(info_num=='74'){
+            $('.product_info .info_frame').append(`<h5>Ibanez</h5>
+                    <p class="  m-0 ">RG550</p>
+                    <p class=" m-0 mb-2"> $33,000</p>
+                    <a class="checkout_a" href="#">立即選購</a>`)
+          }
+
+        })
+      }
+      // 3.將glitchme(雜訊效果) 物件移除
+      function glitch15(e){
+        $('.wrapper_1').css("opacity","1").css("transition-delay","0s");
+        $('.wrapper_2').css("opacity","1").css("transition-delay","0s");
+        $('.wrapper_3').css("opacity","1").css("transition-delay","0s");
+        setTimeout(() => {
+            $('.glitchme').siblings().remove();
+          }, 1000);
+          console.log(444);
+      }
+
+      $('.product_img').click(function(e){
+        glitch11()
+        .then(() => changephoto(e))
+        .then(() => glitch15())
+        .catch(err => console.error(err));
+
+      })
+
+
+      // 亂碼效果https://codepen.io/lorcalhost/pen/qPmLMr?editors=0010
+      class TextScramble {
+        constructor(el) {
+            this.el = el
+            this.chars = '!<>-_\\/[]{}—=+*^?#________'
+            this.update = this.update.bind(this)
+        }
+        setText(newText) {
+          const oldText = this.el.innerText
+          const length = Math.max(oldText.length, newText.length)
+          const promise = new Promise((resolve) => this.resolve = resolve)
+          this.queue = []
+          for (let i = 0; i < length; i++) {
+          const from = oldText[i] || ''
+          const to = newText[i] || ''
+          const start = Math.floor(Math.random() * 40)
+          const end = start + Math.floor(Math.random() * 40)
+          this.queue.push({ from, to, start, end })
+          }
+          cancelAnimationFrame(this.frameRequest)
+          this.frame = 0
+          this.update()
+          return promise
+        }
+        update() {
+          let output = ''
+          let complete = 0
+          for (let i = 0, n = this.queue.length; i < n; i++) {
+          let { from, to, start, end, char } = this.queue[i]
+          if (this.frame >= end) {
+              complete++
+              output += to
+          } else if (this.frame >= start) {
+              if (!char || Math.random() < 0.28) {
+              char = this.randomChar()
+              this.queue[i].char = char
+              }
+              output += `<span class="dud start_button">${char}</span>`
+          } else {
+              output += from
+          }
+          }
+          this.el.innerHTML = output
+          if (complete === this.queue.length) {
+          this.resolve()
+          } else {
+          this.frameRequest = requestAnimationFrame(this.update)
+          this.frame++
+          }
+        }
+        randomChar() {
+          return this.chars[Math.floor(Math.random() * this.chars.length)]
+        }
+      }
+      const phrases = [
+        '立即開始'
+      ]
+
+      const el = document.querySelector('.start_button')
+      const fx = new TextScramble(el)
+
+      let counter = 0
+      const next = () => {
+        fx.setText(phrases[counter])
+        // .then(() => {
+        //   setTimeout(next, 2000)
+        // })
+        counter = (counter + 1) % phrases.length
+      }
+      $('.recommend_btn').hover(function(){
+        next()
+      })
+      
+
+      // ---------------------互動卡片動態效果--------------------------
+      var x;
+      var $cards = $(".card");
+      var $style = $(".hover");
+
+      $cards
+      .on("mousemove touchmove", function(e) { 
+          // normalise touch/mouse
+          var pos = [e.offsetX,e.offsetY];
+          e.preventDefault();
+          if ( e.type === "touchmove" ) {
+          pos = [ e.touches[0].clientX, e.touches[0].clientY ];
+          }
+          var $card = $(this);
+          // math for mouse position
+          var l = pos[0];
+          var t = pos[1];
+          var h = $card.height();
+          var w = $card.width();
+          var px = Math.abs(Math.floor(100 / w * l)-100);
+          var py = Math.abs(Math.floor(100 / h * t)-100);
+          var pa = (50-px)+(50-py);
+          // math for gradient / background positions
+          var lp = (50+(px - 50)/1.5);
+          var tp = (50+(py - 50)/1.5);
+          var px_spark = (50+(px - 50)/7);
+          var py_spark = (50+(py - 50)/7);
+          var p_opc = 20+(Math.abs(pa)*1.5);
+          var ty = ((tp - 50)/2) * -1;
+          var tx = ((lp - 50)/1.5) * .5;
+          // css to apply for active card
+          var grad_pos = `background-position: ${lp}% ${tp}%;`
+          var sprk_pos = `background-position: ${px_spark}% ${py_spark}%;`
+          var opc = `opacity: ${p_opc/100};`
+          var tf = `transform: rotateX(${ty}deg) rotateY(${tx}deg)`
+          // need to use a <style> tag for psuedo elements
+          var style = `
+          .card:hover:before { ${grad_pos} }  /* gradient */
+          .card:hover:after { ${sprk_pos} ${opc} }   /* sparkles */ 
+          `
+          // set / apply css class and style
+          $cards.removeClass("active");
+          $card.removeClass("animated");
+          $card.attr( "style", tf );
+          $style.html(style);
+          if ( e.type === "touchmove" ) {
+          return false; 
+          }
+          clearTimeout(x);
+      }).on("mouseout touchend touchcancel", function() {
+          // remove css, apply custom animation on end
+          var $card = $(this);
+          $style.html("");
+          $card.removeAttr("style");
+          x = setTimeout(function() {
+          $card.addClass("animated");
+          },2000);
+      });
+
+    </script>
+</body>
+    
+
+
+
+    
