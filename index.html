@@ -1869,10 +1869,15 @@
   
     </style>
     <script>
-      let window_width =$(window).width()
-      let svg_transform =-1585/1920*window_width 
-      $('.logo_hidden_svg').attr('data-4000-bottom',`width:8160vw;height:8160vw;transform:translate(${svg_transform},0)`)
-
+      // let window_width =$(window).width()
+      // let svg_transform =-1585/1920*window_width 
+      // function change_trans(){
+      //   $('.logo_hidden_svg').attr('data-4000-bottom',`width:8160vw;height:8160vw;transform:translate(${svg_transform},0)`)
+      //   console.log(11111);
+      // }
+      // change_trans();
+      // console.log(window_width);
+      // console.log(svg_transform);
     </script>
 </head>
 
@@ -2143,7 +2148,7 @@
                 </video>
 
             
-                <div class="vk_marquee position-relative">
+                <div class="vk_marquee position-relative" >
                 <h1 class="vk_horizontalline position-absolute">NEONOISE</h1>
                 <h1 class="vk_horizontalline2 position-absolute">NEONOISE</h1>
                 </div>
@@ -2284,7 +2289,7 @@
             </section>
             <!-- logo遮罩 -->
             <div class="logo_hidden" style="overflow: hidden;height: 100vh;"> 
-                <svg class="logo_hidden_svg" style="overflow:visible; "  width="600" height="600" viewBox="0 0 600 600" enable-background="new 0 0 600 600"fill="none" xmlns="http://www.w3.org/2000/svg" data-anchor-target=".row1" data--2000-top="width:32vw;height:32vw;transform:translate(1px,0)"  data-4000-bottom="width:8160vw;height:8160vw;transform:translate(-1585,0)" >
+                <svg class="logo_hidden_svg" style="overflow:visible; "  width="600" height="600" viewBox="0 0 600 600" enable-background="new 0 0 600 600"fill="none" xmlns="http://www.w3.org/2000/svg" data-anchor-target=".row1" data--2000-top="width:32vw;height:32vw;transform:translate(1px,0)"  data-4000-bottom="width:8160vw;height:8160vw;transform:translate(-1542px,0);opacity:1" data-3900-bottom="width:8160vw;height:8160vw;transform:translate(-1542px,0);opacity:0">
                 <!-- <svg style="overflow:visible; "  width="600" height="600" viewBox="0 0 600 600" enable-background="new 0 0 600 600"fill="none" xmlns="http://www.w3.org/2000/svg" data-anchor-target=".row1" <?= $isMobile ? 'data--200-top="width:32vw;height:32vw;transform:translate(1px,0)"  data--3000-top="width:8160vw;height:8160vw;transform:translate(-310px,0)"' :  'data--2000-top="width:32vw;height:32vw;transform:translate(1px,0)"  data-4000-bottom="width:8160vw;height:8160vw;transform:translate(-1585px,0)"' ?> > -->
                 <rect x="150" y="150" width="300" height="300" fill="#fff" data-anchor-target=".row1" data-top-top="opacity:0" data--2000-top="opacity:1" data--3000-top="opacity:0"/>
                 <!-- <rect x="150" y="150" width="300" height="300" fill="#fff" data-anchor-target=".row1" data-top-top="opacity:0" data-<?= $isMobile ? -100:-2000 ?>-top="opacity:1" data-<?= $isMobile ? -1200 :-3000 ?>-top="opacity:0"/> -->
@@ -2469,12 +2474,13 @@
 
         
 
-
+        console.log(22222);
     </script>
     <!-- 視差滾動外掛 skrollr -->
     <script type="text/javascript" src="./js/pon/skrollr-master/skrollr-master/skrollr.min.js"></script>
     <script type="text/javascript" src="./js/pon/skrollr-colors-master/skroll-colors.min.js"></script>
     <script>
+      console.log(333333);
       // let window_width =$(window).width()
       // let svg_transform =-1585/1920*window_width 
       // $('.logo_hidden_svg').attr('data-4000-bottom',`width:8160vw;height:8160vw;transform:translate(${svg_transform},0)`)
